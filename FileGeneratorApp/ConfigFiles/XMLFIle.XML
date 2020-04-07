@@ -1,30 +1,32 @@
 <FileGenerator>
-<Common>
-<Delimeter>:</Delimeter>
-<DateFormte>MM-DD-YYYY</DateFormte>
-</Common>
-<HeaderDetails>
-<Column Value=Name"/>
-<Column Value=Date"/>
-<Column Value=PlateNo"/>
-<Column Value=Amount"/>
-</HeaderDetails>
+  <CommonDetails>
+    <Delimeter>:</Delimeter>
+    <DateFormte>MM-DD-YYYY</DateFormte>
+    <FileName>XYZ{mmDDyyyy}</FileName>
+  </CommonDetails>
+  
+  <HeaderDetails>
+    <Column Value="Name"/>
+    <Column Value="Date"/>
+    <Column Value="PlateNo"/>
+    <Column Value="Amount"/>
+  </HeaderDetails>
 
-<RecordDetails>
-<Seprator>:</Seprator>
-<Records>
-<Record Value="MAruti", AutoGerate="True"/>
-<Record Value="30-03-2020", AutoGerate="True"/>
-<Record Value="BE0789", AutoGerate="True"/>
-<Record Value="300", AutoGerate="True"/>
-</Records>
-</RecordDetails>
+  <RecordDetails>
+    <Seprator>:</Seprator>
+    <Records>
+      <Record Name="Name" Value="Maruti" AutoGerate="True" Length ="10" Prefix="XXX" Suffix =""/>
+      <Record Name="Date" Value="30-03-2020" AutoGerate="True"/>
+      <Record Name="PlateNo" Value="BE0789" AutoGerate="True"/>
+      <Record Name="Amount" Value="300" AutoGerate="True"/>
+    </Records>
+  </RecordDetails>
 
-<FooterDetails>
-<Prefix Value="SS"/>
-<RecordCount Value="4"/>
-<TotalAmount Value="100"/>
-<Suffix Value="SS-End"/>
-</FooterDetails>
+  <FooterDetails>
+    <Prefix Value="SS"/>
+    <RecordCount Value="4"/>
+    <TotalAmount Value="100"/>
+    <Suffix Value="SS-End"/>
+  </FooterDetails>
 
 </FileGenerator>

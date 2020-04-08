@@ -65,7 +65,7 @@ namespace FileGeneratorApp
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-           //x txtFilePath.Text
+
         }
     }
 }

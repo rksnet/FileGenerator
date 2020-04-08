@@ -14,7 +14,7 @@ namespace FileGeneratorApp
 {
     public partial class frmInputDetails : Form
     {
-        
+
         public frmInputDetails()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace FileGeneratorApp
                 try
                 {
                     txtFilePath.Text = file;
-                    
+
                 }
                 catch (IOException)
                 {
@@ -60,14 +60,55 @@ namespace FileGeneratorApp
             txtSaveFileLocation.Text = name;
             // Write to the file name selected.
             // ... You can write the text from a TextBox instead of a string literal.
-           // File.WriteAllText(name, "test");
+            // File.WriteAllText(name, "test");
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
+            BindDataAndProcess();
+        }
 
+        private bool ValidateInput()
+        {
+            bool result = true;
+            if (string.IsNullOrEmpty(txtFilePath.Text) || string.IsNullOrWhiteSpace(txtFilePath.Text))
+                result = false;
 
-           //x txtFilePath.Text
+            if (string.IsNullOrEmpty(txtSaveFileLocation.Text) || string.IsNullOrWhiteSpace(txtSaveFileLocation.Text))
+                result = false;
+
+            if (cmbFileType.SelectedIndex <= 0)
+                result = false;
+
+            return result;
+        }
+        private void BindDataAndProcess()
+        {
+            if (!ValidateInput())
+            {
+                lblError.Text = "Fields marked with (*) are mandatory.";
+            }
+            else
+            {
+                lblError.Text = "";
+                XmlProcessing xmlProcessing = new XmlProcessing(txtFilePath.Text);
+                xmlProcessing.RecordCount = Convert.ToInt32(recordsCount.Value);
+                xmlProcessing.DateFormat = txtDateFormat.Text;
+                xmlProcessing.Delimeter = Convert.ToChar(txtDelimeter.Text);
+                xmlProcessing.OutputFileType = cmbFileType.SelectedItem.ToString();
+                xmlProcessing.OutputFileName = Path.GetFileName(txtSaveFileLocation.Text);
+                xmlProcessing.OutputFilePath = txtSaveFileLocation.Text;
+
+                //bool result = xmlProcessing.ParseAndGenerateFile();
+                //if (result)
+                //    MessageBox.Show("File generated and saved on the given location.", "Information", MessageBoxButtons.OK);
+                //else
+                //    MessageBox.Show("File generation process failedq.", "Information", MessageBoxButtons.OK);
+            }
+        }
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            BindDataAndProcess();
         }
     }
 }

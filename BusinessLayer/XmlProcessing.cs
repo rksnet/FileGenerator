@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace BusinessLayer
 {
-    class XmlProcessing
+    public class XmlProcessing
     {
         private string FilePath { get; set; }
         public int RecordCount { get; set; }
@@ -29,9 +29,11 @@ namespace BusinessLayer
             IsValidXmlFile = IsValidXmlAndPath();
         }
 
-        public void ParseAndGenerateFile()
+        public bool ParseAndGenerateFile()
         {
+            bool result = true;
 
+            return result;
         }
 
         private bool IsValidXmlAndPath()

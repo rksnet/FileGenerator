@@ -9,6 +9,15 @@ namespace BusinessLayer
     class XmlProcessing
     {
         private string FilePath { get; set; }
+        public int RecordCount { get; set; }
+        public string DateFormat { get; set; }
+        public char Delimeter { get; set; }
+        public string OutputFilePath { get; set; }
+        public string OutputFileName { get; set; }
+        public string OutputFileType { get; set; }
+
+        public bool IsValidXmlFile { get; set; }
+
         private IEnumerable<XElement> CommonData { get; set; }
         private IEnumerable<XElement> HeaderData { get; set; }
         private IEnumerable<XElement> RecordData { get; set; }
@@ -17,6 +26,7 @@ namespace BusinessLayer
         public XmlProcessing(string filePath)
         {
             FilePath = filePath;
+            IsValidXmlFile = IsValidXmlAndPath();
         }
 
         public void ParseAndGenerateFile()

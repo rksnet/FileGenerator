@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace BusinessLayer
 {
-    class XmlProcessing
+    public class XmlProcessing
     {
         private string FilePath { get; set; }
         private IEnumerable<XElement> CommonData { get; set; }

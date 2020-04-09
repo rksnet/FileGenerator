@@ -31,22 +31,9 @@ namespace BusinessLayer
             FilePath = filePath;
         }
 
-        public void ParseAndGenerateFile()
+        public bool ParseAndGenerateFile()
         {
-            if (File.Exists(FilePath))
-            {
-                ReadXmlElement();
-                ReadCommonDetails();
-            }
-        }
 
-        private void ReadXmlElement()
-        {
-            var xmlData = XElement.Load(FilePath);
-            CommonData = xmlData.Elements("CommonDetails");
-            HeaderData = xmlData.Elements("HeaderDetails");
-            RecordData = xmlData.Elements("RecordDetails");
-            FooterData = xmlData.Elements("FooterDetails");
         }
 
         private void ReadCommonDetails()

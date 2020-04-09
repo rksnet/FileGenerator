@@ -33,20 +33,21 @@
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.lblOpenFile = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblRecordCount = new System.Windows.Forms.Label();
-            this.recordsCount = new System.Windows.Forms.NumericUpDown();
-            this.lblDateFormat = new System.Windows.Forms.Label();
-            this.txtDateFormat = new System.Windows.Forms.TextBox();
-            this.lblDelimeter = new System.Windows.Forms.Label();
-            this.txtDelimeter = new System.Windows.Forms.TextBox();
-            this.lblFileType = new System.Windows.Forms.Label();
-            this.cmbFileType = new System.Windows.Forms.ComboBox();
-            this.btnPreview = new System.Windows.Forms.Button();
-            this.btnGenerate = new System.Windows.Forms.Button();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.lblOutputFileSave = new System.Windows.Forms.Label();
-            this.txtSaveFileLocation = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtSaveFileLocation = new System.Windows.Forms.TextBox();
+            this.lblOutputFileSave = new System.Windows.Forms.Label();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnPreview = new System.Windows.Forms.Button();
+            this.cmbFileType = new System.Windows.Forms.ComboBox();
+            this.lblFileType = new System.Windows.Forms.Label();
+            this.txtDelimeter = new System.Windows.Forms.TextBox();
+            this.lblDelimeter = new System.Windows.Forms.Label();
+            this.txtDateFormat = new System.Windows.Forms.TextBox();
+            this.lblDateFormat = new System.Windows.Forms.Label();
+            this.recordsCount = new System.Windows.Forms.NumericUpDown();
+            this.lblRecordCount = new System.Windows.Forms.Label();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.lblError = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recordsCount)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +88,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblError);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.txtSaveFileLocation);
             this.panel1.Controls.Add(this.lblOutputFileSave);
@@ -109,81 +111,56 @@
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // lblRecordCount
+            // btnSave
             // 
-            this.lblRecordCount.AutoSize = true;
-            this.lblRecordCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordCount.Location = new System.Drawing.Point(3, 93);
-            this.lblRecordCount.Name = "lblRecordCount";
-            this.lblRecordCount.Size = new System.Drawing.Size(168, 18);
-            this.lblRecordCount.TabIndex = 3;
-            this.lblRecordCount.Text = "Number of Records*:";
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(677, 185);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(88, 29);
+            this.btnSave.TabIndex = 14;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // recordsCount
+            // txtSaveFileLocation
             // 
-            this.recordsCount.Location = new System.Drawing.Point(195, 93);
-            this.recordsCount.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.recordsCount.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.recordsCount.Name = "recordsCount";
-            this.recordsCount.Size = new System.Drawing.Size(46, 22);
-            this.recordsCount.TabIndex = 4;
-            this.recordsCount.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+            this.txtSaveFileLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSaveFileLocation.Location = new System.Drawing.Point(160, 185);
+            this.txtSaveFileLocation.Name = "txtSaveFileLocation";
+            this.txtSaveFileLocation.Size = new System.Drawing.Size(511, 24);
+            this.txtSaveFileLocation.TabIndex = 13;
             // 
-            // lblDateFormat
+            // lblOutputFileSave
             // 
-            this.lblDateFormat.AutoSize = true;
-            this.lblDateFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateFormat.Location = new System.Drawing.Point(260, 93);
-            this.lblDateFormat.Name = "lblDateFormat";
-            this.lblDateFormat.Size = new System.Drawing.Size(107, 18);
-            this.lblDateFormat.TabIndex = 5;
-            this.lblDateFormat.Text = "Date Format:";
+            this.lblOutputFileSave.AutoSize = true;
+            this.lblOutputFileSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOutputFileSave.Location = new System.Drawing.Point(3, 191);
+            this.lblOutputFileSave.Name = "lblOutputFileSave";
+            this.lblOutputFileSave.Size = new System.Drawing.Size(139, 18);
+            this.lblOutputFileSave.TabIndex = 4;
+            this.lblOutputFileSave.Text = "Output File path*:";
             // 
-            // txtDateFormat
+            // btnGenerate
             // 
-            this.txtDateFormat.Location = new System.Drawing.Point(390, 92);
-            this.txtDateFormat.Name = "txtDateFormat";
-            this.txtDateFormat.Size = new System.Drawing.Size(96, 22);
-            this.txtDateFormat.TabIndex = 6;
+            this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate.Location = new System.Drawing.Point(471, 284);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(164, 30);
+            this.btnGenerate.TabIndex = 12;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
-            // lblDelimeter
+            // btnPreview
             // 
-            this.lblDelimeter.AutoSize = true;
-            this.lblDelimeter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDelimeter.Location = new System.Drawing.Point(518, 93);
-            this.lblDelimeter.Name = "lblDelimeter";
-            this.lblDelimeter.Size = new System.Drawing.Size(85, 18);
-            this.lblDelimeter.TabIndex = 7;
-            this.lblDelimeter.Text = "Delimeter:";
-            // 
-            // txtDelimeter
-            // 
-            this.txtDelimeter.Location = new System.Drawing.Point(619, 92);
-            this.txtDelimeter.Name = "txtDelimeter";
-            this.txtDelimeter.Size = new System.Drawing.Size(56, 22);
-            this.txtDelimeter.TabIndex = 8;
-            // 
-            // lblFileType
-            // 
-            this.lblFileType.AutoSize = true;
-            this.lblFileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileType.Location = new System.Drawing.Point(3, 144);
-            this.lblFileType.Name = "lblFileType";
-            this.lblFileType.Size = new System.Drawing.Size(133, 18);
-            this.lblFileType.TabIndex = 9;
-            this.lblFileType.Text = "Output file type*:";
+            this.btnPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPreview.Location = new System.Drawing.Point(143, 284);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(164, 30);
+            this.btnPreview.TabIndex = 11;
+            this.btnPreview.Text = "Preview";
+            this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // cmbFileType
             // 
@@ -199,59 +176,95 @@
             this.cmbFileType.Size = new System.Drawing.Size(86, 24);
             this.cmbFileType.TabIndex = 10;
             // 
-            // btnPreview
+            // lblFileType
             // 
-            this.btnPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPreview.Location = new System.Drawing.Point(143, 284);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(164, 30);
-            this.btnPreview.TabIndex = 11;
-            this.btnPreview.Text = "Preview";
-            this.btnPreview.UseVisualStyleBackColor = true;
-            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
+            this.lblFileType.AutoSize = true;
+            this.lblFileType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileType.Location = new System.Drawing.Point(3, 144);
+            this.lblFileType.Name = "lblFileType";
+            this.lblFileType.Size = new System.Drawing.Size(133, 18);
+            this.lblFileType.TabIndex = 9;
+            this.lblFileType.Text = "Output file type*:";
             // 
-            // btnGenerate
+            // txtDelimeter
             // 
-            this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate.Location = new System.Drawing.Point(471, 284);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(164, 30);
-            this.btnGenerate.TabIndex = 12;
-            this.btnGenerate.Text = "Generate";
-            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.txtDelimeter.Location = new System.Drawing.Point(619, 92);
+            this.txtDelimeter.MaxLength = 1;
+            this.txtDelimeter.Name = "txtDelimeter";
+            this.txtDelimeter.Size = new System.Drawing.Size(56, 22);
+            this.txtDelimeter.TabIndex = 8;
+            // 
+            // lblDelimeter
+            // 
+            this.lblDelimeter.AutoSize = true;
+            this.lblDelimeter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDelimeter.Location = new System.Drawing.Point(518, 93);
+            this.lblDelimeter.Name = "lblDelimeter";
+            this.lblDelimeter.Size = new System.Drawing.Size(85, 18);
+            this.lblDelimeter.TabIndex = 7;
+            this.lblDelimeter.Text = "Delimeter:";
+            // 
+            // txtDateFormat
+            // 
+            this.txtDateFormat.Location = new System.Drawing.Point(390, 92);
+            this.txtDateFormat.MaxLength = 10;
+            this.txtDateFormat.Name = "txtDateFormat";
+            this.txtDateFormat.Size = new System.Drawing.Size(96, 22);
+            this.txtDateFormat.TabIndex = 6;
+            // 
+            // lblDateFormat
+            // 
+            this.lblDateFormat.AutoSize = true;
+            this.lblDateFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateFormat.Location = new System.Drawing.Point(260, 93);
+            this.lblDateFormat.Name = "lblDateFormat";
+            this.lblDateFormat.Size = new System.Drawing.Size(107, 18);
+            this.lblDateFormat.TabIndex = 5;
+            this.lblDateFormat.Text = "Date Format:";
+            // 
+            // recordsCount
+            // 
+            this.recordsCount.Location = new System.Drawing.Point(195, 93);
+            this.recordsCount.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.recordsCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.recordsCount.Name = "recordsCount";
+            this.recordsCount.Size = new System.Drawing.Size(46, 22);
+            this.recordsCount.TabIndex = 4;
+            this.recordsCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblRecordCount
+            // 
+            this.lblRecordCount.AutoSize = true;
+            this.lblRecordCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecordCount.Location = new System.Drawing.Point(3, 93);
+            this.lblRecordCount.Name = "lblRecordCount";
+            this.lblRecordCount.Size = new System.Drawing.Size(168, 18);
+            this.lblRecordCount.TabIndex = 3;
+            this.lblRecordCount.Text = "Number of Records*:";
             // 
             // saveFileDialog
             // 
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
             // 
-            // lblOutputFileSave
+            // lblError
             // 
-            this.lblOutputFileSave.AutoSize = true;
-            this.lblOutputFileSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOutputFileSave.Location = new System.Drawing.Point(3, 191);
-            this.lblOutputFileSave.Name = "lblOutputFileSave";
-            this.lblOutputFileSave.Size = new System.Drawing.Size(139, 18);
-            this.lblOutputFileSave.TabIndex = 4;
-            this.lblOutputFileSave.Text = "Output File path*:";
-            // 
-            // txtSaveFileLocation
-            // 
-            this.txtSaveFileLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSaveFileLocation.Location = new System.Drawing.Point(160, 185);
-            this.txtSaveFileLocation.Name = "txtSaveFileLocation";
-            this.txtSaveFileLocation.Size = new System.Drawing.Size(511, 24);
-            this.txtSaveFileLocation.TabIndex = 13;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(677, 185);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(88, 29);
-            this.btnSave.TabIndex = 14;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(3, 230);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 17);
+            this.lblError.TabIndex = 15;
             // 
             // frmInputDetails
             // 
@@ -290,6 +303,7 @@
         private System.Windows.Forms.TextBox txtSaveFileLocation;
         private System.Windows.Forms.Label lblOutputFileSave;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Label lblError;
     }
 }
 

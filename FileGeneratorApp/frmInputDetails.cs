@@ -94,7 +94,7 @@ namespace FileGeneratorApp
                 XmlProcessing xmlProcessing = new XmlProcessing(txtFilePath.Text);
                 xmlProcessing.RecordCount = Convert.ToInt32(recordsCount.Value);
                 xmlProcessing.DateFormat = txtDateFormat.Text;
-                xmlProcessing.Delimeter = Convert.ToChar(txtDelimeter.Text);
+                xmlProcessing.Delimiter = Convert.ToChar(txtDelimeter.Text);
                 xmlProcessing.OutputFileType = cmbFileType.SelectedItem.ToString();
                 xmlProcessing.OutputFileName = Path.GetFileName(txtSaveFileLocation.Text);
                 xmlProcessing.OutputFilePath = txtSaveFileLocation.Text;

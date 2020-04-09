@@ -33,17 +33,14 @@ namespace BusinessLayer
 
         public bool ParseAndGenerateFile()
         {
-<<<<<<< HEAD
             if (File.Exists(FilePath))
             {
                 ReadXmlElement();
                 ReadCommonDetails();
             }
-=======
             bool result = true;
 
             return result;
->>>>>>> bc791bc7eb456b1af1cb0e0bcdb0b3529922e383
         }
 
         private void ReadXmlElement()

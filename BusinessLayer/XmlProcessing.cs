@@ -1,22 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace BusinessLayer
 {
-    class XmlProcessing
+    public class XmlProcessing
     {
+        private const char DELIMITER_DEFAULT_VALUE = ',';
+        private const string DATE_FORMAT_DEFAULT_VALUE = "MMDDYYYY";
+        private const string OUTPUT_FILE_NAME_DEFAULT_VALUE = "FileExtract{mmDDyyyy}";
+        private const int RECORD_COUNT_DEFAULT_VALUE = 10;
+
         private string FilePath { get; set; }
         public int RecordCount { get; set; }
         public string DateFormat { get; set; }
-        public char Delimeter { get; set; }
+        public char Delimiter { get; set; }
         public string OutputFilePath { get; set; }
         public string OutputFileName { get; set; }
         public string OutputFileType { get; set; }
-
-        public bool IsValidXmlFile { get; set; }
 
         private IEnumerable<XElement> CommonData { get; set; }
         private IEnumerable<XElement> HeaderData { get; set; }
@@ -26,27 +29,51 @@ namespace BusinessLayer
         public XmlProcessing(string filePath)
         {
             FilePath = filePath;
-            IsValidXmlFile = IsValidXmlAndPath();
         }
 
         public void ParseAndGenerateFile()
         {
-
-        }
-
-        private bool IsValidXmlAndPath()
-        {
-            var regEx = new Regex(@"^(([a-zA-Z]:)|(\))(\{1}|((\{1})[^\]([^/:*?<>""|]*))+)$");
-            return regEx.IsMatch(FilePath) & File.Exists(FilePath);
+            if (File.Exists(FilePath))
+            {
+                ReadXmlElement();
+                ReadCommonDetails();
+            }
         }
 
         private void ReadXmlElement()
         {
             var xmlData = XElement.Load(FilePath);
-            CommonData = xmlData.Elements("Common");
-            HeaderData = xmlData.Elements("Common");
-            RecordData = xmlData.Elements("Common");
-            FooterData = xmlData.Elements("Common");
+            CommonData = xmlData.Elements("CommonDetails");
+            HeaderData = xmlData.Elements("HeaderDetails");
+            RecordData = xmlData.Elements("RecordDetails");
+            FooterData = xmlData.Elements("FooterDetails");
+        }
+
+        private void ReadCommonDetails()
+        {
+            if (CommonData.Any())
+            {
+                if (CommonData.Elements("Delimiter").Any() && Delimiter == '\0')
+                {
+                    Delimiter = CommonData.Elements("Delimiter").FirstOrDefault().Value == string.Empty ? DELIMITER_DEFAULT_VALUE : Convert.ToChar(CommonData.Elements("Delimiter").FirstOrDefault().Value);
+                }
+                if (CommonData.Elements("DateFormat").Any() && DateFormat == null)
+                {
+                    DateFormat = CommonData.Elements("DateFormat").FirstOrDefault().Value == string.Empty ? DATE_FORMAT_DEFAULT_VALUE : CommonData.Elements("DateFormat").FirstOrDefault().Value;
+                }
+                if (CommonData.Elements("FileName").Any() && OutputFileName == null)
+                {
+                    OutputFileName = CommonData.Elements("FileName").FirstOrDefault().Value == string.Empty ? OUTPUT_FILE_NAME_DEFAULT_VALUE : CommonData.Elements("FileName").FirstOrDefault().Value;
+                }
+                if (CommonData.Elements("RecordCount").Any() && RecordCount == 0)
+                {
+                    RecordCount = CommonData.Elements("RecordCount").FirstOrDefault().Value == string.Empty ? RECORD_COUNT_DEFAULT_VALUE : Convert.ToInt32(CommonData.Elements("RecordCount").FirstOrDefault().Value);
+                }
+                if (OutputFilePath == null)
+                {
+                    OutputFilePath = Path.GetDirectoryName(FilePath);
+                }
+            }
         }
 
     }

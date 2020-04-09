@@ -1,0 +1,34 @@
+[
+  {
+    "String": [
+      {
+        "Value": "asdasd"
+      },
+      {
+        "Value": "asdasd"
+      },
+      {
+        "Value": "asdasd"
+      },
+      {
+        "Value": "asdasd"
+      }
+    ]
+  },
+  "Decimal",
+  [
+    {
+      "Value": "1001"
+    },
+    {
+      "Value": "1001"
+    },
+    {
+      "Value": "1001"
+    },
+    {
+      "Value": "1001"
+    }
+  ]
+
+]

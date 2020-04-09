@@ -1,8 +1,8 @@
-<FileGenerator>
+﻿<FileGenerator>
   <CommonDetails>
     <Separater>:</Separater>
     <FileName>XYZ{mmDDyyyy}</FileName>
-    <GenrateHeader>True</GenrateHeader>
+    <GenrateHeader>  True</GenrateHeader>
   </CommonDetails>
 
   <HeaderDetails>

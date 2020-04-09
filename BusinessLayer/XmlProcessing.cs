@@ -25,7 +25,7 @@ namespace BusinessLayer
         private IEnumerable<XElement> HeaderData { get; set; }
         private IEnumerable<XElement> RecordData { get; set; }
         private IEnumerable<XElement> FooterData { get; set; }
-        
+
         public XmlProcessing(string filePath)
         {
             FilePath = filePath;
@@ -33,7 +33,26 @@ namespace BusinessLayer
 
         public bool ParseAndGenerateFile()
         {
+<<<<<<< HEAD
+            if (File.Exists(FilePath))
+            {
+                ReadXmlElement();
+                ReadCommonDetails();
+            }
+=======
+            bool result = true;
 
+            return result;
+>>>>>>> bc791bc7eb456b1af1cb0e0bcdb0b3529922e383
+        }
+
+        private void ReadXmlElement()
+        {
+            var xmlData = XElement.Load(FilePath);
+            CommonData = xmlData.Elements("CommonDetails");
+            HeaderData = xmlData.Elements("HeaderDetails");
+            RecordData = xmlData.Elements("RecordDetails");
+            FooterData = xmlData.Elements("FooterDetails");
         }
 
         private void ReadCommonDetails()

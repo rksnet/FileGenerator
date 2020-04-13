@@ -1,27 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FileGenerator>
   <CommonDetails>
     <Separater>:</Separater>
     <FileName>XYZ{mmDDyyyy}</FileName>
     <GenrateHeader>True</GenrateHeader>
   </CommonDetails>
-
-  <HeaderDetails>
-    <ID/>
-    <FirstName/>
-    <Lastname/>
-    <Amount/>
-  </HeaderDetails>
-
+  <HeaderDetails />
   <Columns>
-    <ID  Datatype ="int" Identity ="true"       NegativeValue="0" />
-    <FirstName  Datatype ="String" Length ="10" NegativeValue="20" />
-    <Lastname   Datatype ="String" Length ="20" NegativeValue="0" />
-    <Amount     Datatype ="int"                 NegativeValue="0" />
-    <Course     Datatype ="string"              NegativeValue="0" />
-  </Columns>
-
+    <Column>
+      <Name>ID</Name>
+      <Datatype>Int</Datatype>
+      <NegativeValue>0</NegativeValue>
+    </Column>
+    <Column>
+      <Name>FirstName</Name>
+      <Datatype>String</Datatype>
+      <Length>100</Length>
+      <NegativeValue>0</NegativeValue>
+    </Column>
+    <Column>
+      <Name>LastName</Name>
+      <Datatype>String</Datatype>
+      <Length>100</Length>
+      <NegativeValue>0</NegativeValue>
+    </Column>
+    <Column>
+      <Name>Age</Name>
+      <Datatype>Int</Datatype>
+      <NegativeValue>0</NegativeValue>
+    </Column>
+   
   <FooterDetails>
-    <RecordCount Value="100"/>
+    <RecordCount Value="100" />
   </FooterDetails>
-
 </FileGenerator>

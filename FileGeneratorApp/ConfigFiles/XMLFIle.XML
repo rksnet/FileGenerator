@@ -29,7 +29,7 @@
       <Datatype>Int</Datatype>
       <NegativeValue>0</NegativeValue>
     </Column>
-   
+    </Columns>
   <FooterDetails>
     <RecordCount Value="100" />
   </FooterDetails>

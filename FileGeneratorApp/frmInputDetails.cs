@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using Common;
 
 namespace FileGeneratorApp
 {
@@ -18,6 +19,9 @@ namespace FileGeneratorApp
         public frmInputDetails()
         {
             InitializeComponent();
+            Logger.WriteError("Test");
+            Logger.WriteInfo("Test  Info");
+            Logger.WriteException(new Exception("Exception"));
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)

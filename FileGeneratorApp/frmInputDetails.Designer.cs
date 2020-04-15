@@ -33,6 +33,7 @@
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.lblOpenFile = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblError = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtSaveFileLocation = new System.Windows.Forms.TextBox();
             this.lblOutputFileSave = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.recordsCount = new System.Windows.Forms.NumericUpDown();
             this.lblRecordCount = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.lblError = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recordsCount)).BeginInit();
             this.SuspendLayout();
@@ -110,6 +110,18 @@
             this.panel1.Size = new System.Drawing.Size(775, 425);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.BackColor = System.Drawing.Color.Red;
+            this.lblError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblError.Location = new System.Drawing.Point(3, 230);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(2, 22);
+            this.lblError.TabIndex = 15;
             // 
             // btnSave
             // 
@@ -257,14 +269,6 @@
             // saveFileDialog
             // 
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(3, 230);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 17);
-            this.lblError.TabIndex = 15;
             // 
             // frmInputDetails
             // 

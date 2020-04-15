@@ -19,9 +19,7 @@ namespace FileGeneratorApp
         public frmInputDetails()
         {
             InitializeComponent();
-            Logger.WriteError("Test");
-            Logger.WriteInfo("Test  Info");
-            Logger.WriteException(new Exception("Exception"));
+           
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -37,6 +35,7 @@ namespace FileGeneratorApp
                 }
                 catch (IOException)
                 {
+   
                 }
             }
         }
@@ -69,6 +68,7 @@ namespace FileGeneratorApp
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
+            
             BindDataAndProcess();
         }
 
@@ -88,26 +88,33 @@ namespace FileGeneratorApp
         }
         private void BindDataAndProcess()
         {
-            if (!ValidateInput())
+            try
             {
-                lblError.Text = "Fields marked with (*) are mandatory.";
-            }
-            else
-            {
-                lblError.Text = "";
-                XmlProcessing xmlProcessing = new XmlProcessing(txtFilePath.Text);
-                xmlProcessing.RecordCount = Convert.ToInt32(recordsCount.Value);
-                xmlProcessing.DateFormat = txtDateFormat.Text;
-                xmlProcessing.Delimiter = Convert.ToChar(txtDelimeter.Text);
-                xmlProcessing.OutputFileType = cmbFileType.SelectedItem.ToString();
-                xmlProcessing.OutputFileName = Path.GetFileName(txtSaveFileLocation.Text);
-                xmlProcessing.OutputFilePath = txtSaveFileLocation.Text;
+                if (!ValidateInput())
+                {
+                    lblError.Text = "Fields marked with (*) are mandatory.";
+                }
+                else
+                {
+                    lblError.Text = "";
+                    XmlProcessing xmlProcessing = new XmlProcessing(txtFilePath.Text);
+                    xmlProcessing.RecordCount = Convert.ToInt32(recordsCount.Value);
+                    xmlProcessing.DateFormat = txtDateFormat.Text;
+                    xmlProcessing.Delimiter = Convert.ToChar(txtDelimeter.Text);
+                    xmlProcessing.OutputFileType = cmbFileType.SelectedItem.ToString();
+                    xmlProcessing.OutputFileName = Path.GetFileName(txtSaveFileLocation.Text);
+                    xmlProcessing.OutputFilePath = txtSaveFileLocation.Text;
 
-                //bool result = xmlProcessing.ParseAndGenerateFile();
-                //if (result)
-                //    MessageBox.Show("File generated and saved on the given location.", "Information", MessageBoxButtons.OK);
-                //else
-                //    MessageBox.Show("File generation process failedq.", "Information", MessageBoxButtons.OK);
+                    bool result = xmlProcessing.ParseAndGenerateFile();
+                    if (result)
+                        MessageBox.Show("File generated and saved on the given location.", "Information", MessageBoxButtons.OK);
+                    else
+                        MessageBox.Show("File generation process failed.", "Information", MessageBoxButtons.OK);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
         private void btnGenerate_Click(object sender, EventArgs e)

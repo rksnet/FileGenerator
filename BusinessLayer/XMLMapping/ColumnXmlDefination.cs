@@ -32,7 +32,7 @@ namespace BusinessLayer.XMLMapping
             [XmlElement(ElementName = "NegativeValue")]
             public int NegativeValue { get; set; }
 
-            [XmlElement(ElementName = "NegativeValue")]
+            [XmlElement(ElementName = "Prifix")]
             public int Prifix { get; set; }
 
             [XmlElement(ElementName = "Suffix")]

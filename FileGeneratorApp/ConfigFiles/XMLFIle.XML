@@ -21,8 +21,11 @@
     <Column>
       <Name>LastName</Name>
       <Datatype>String</Datatype>
-      <Length>100</Length>
-      <NegativeValue>0</NegativeValue>
+      <MinLength>50</MinLength>
+      <MaxLength>100</MaxLength>
+      <Prifix>AND</Prifix>
+      <Suffix>XYZ</Suffix>
+      <NegativeValue>10</NegativeValue>
     </Column>
     <Column>
       <Name>Age</Name>

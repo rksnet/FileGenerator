@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.DataProcessing
 {
+    /// <summary>
+    /// static list's to hanle data structure
+    /// </summary>
     public static class DataTypeHandler
     {
 
@@ -18,5 +21,6 @@ namespace BusinessLayer.DataProcessing
         public static List<string> lstIntType = new List<string>(CreateList<String>("int", "integer", "number", "num"));
         public static List<string> lstDecimalType = new List<string>(CreateList<String>("decimal", "double", "float"));
         public static List<string> lstDateType = new List<string>(CreateList<String>("date", "datetime"));
+        public static List<string> lstCharType = new List<string>(CreateList<string>(",","|",":"));
     }
 }

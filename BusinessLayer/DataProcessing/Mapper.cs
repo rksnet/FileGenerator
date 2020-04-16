@@ -11,20 +11,23 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.DataProcessing
 {
-   public  class Mapper
+    /// <summary>
+    /// Mapper class to perform addtionional functionlity over the xml data other than column generation 
+    /// </summary>
+    public class Mapper
     {
-
-        public  void GetFileStructure (string xml)
+        /// <summary>
+        /// process xml data and generates the flat file 
+        /// </summary>
+        /// <param name="xmlFilePath"></param>
+        /// <param name="saveFilePath"></param>
+        public void GetTestFile(string xmlFilePath, string saveFilePath)
         {
-            FileGenerator objFileGenerator = Utility.DeserializeFromXml<FileGenerator>(xml);
+            FileGenerator objFileGenerator = Utility.DeserializeFromXml<FileGenerator>(xmlFilePath);
             RandomDataGenerator objRandomDataGenerator = new RandomDataGenerator(objFileGenerator.FooterDetails.RecordCount.Value);
-            var dataTable=objRandomDataGenerator.GetRandamData(objFileGenerator.Columns);
+            var dataTable = objRandomDataGenerator.GetRandamData(objFileGenerator.Columns);
+            Utility.FlatFileGenerator(dataTable, saveFilePath, DataTypeHandler.lstCharType.Contains(objFileGenerator.CommonDetails.Separater) == true ? Convert.ToChar(objFileGenerator.CommonDetails.Separater) : ',');
         }
 
-        public  void GetFile(string strFilePath)
-        { 
-        
-        }
-     
     }
 }

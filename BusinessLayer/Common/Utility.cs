@@ -27,22 +27,25 @@ namespace BusinessLayer.Common
             }
             return result;
         }
-        public static void ToCSVOrTextFile(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv", char delimiter = ',', bool generateHeader = true)
+        /// <summary>
+        /// this will convert datatable to flat file 
+        /// </summary>
+        /// <param name="dtDataTable"></param>
+        /// <param name="strFilePath"></param>
+        /// <param name="separator"></param>
+        public static void FlatFileGenerator(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv",char separator=',')
         {
             StreamWriter sw = new StreamWriter(strFilePath, false);
-            if (generateHeader)
+            //headers  
+            for (int i = 0; i < dtDataTable.Columns.Count; i++)
             {
-                //headers  
-                for (int i = 0; i < dtDataTable.Columns.Count; i++)
+                sw.Write(dtDataTable.Columns[i]);
+                if (i < dtDataTable.Columns.Count - 1)
                 {
-                    sw.Write(dtDataTable.Columns[i]);
-                    if (i < dtDataTable.Columns.Count - 1)
-                    {
-                        sw.Write(delimiter);
-                    }
+                    sw.Write(separator.ToString());
                 }
-                sw.Write(sw.NewLine);
             }
+            sw.Write(sw.NewLine);
             foreach (DataRow dr in dtDataTable.Rows)
             {
                 for (int i = 0; i < dtDataTable.Columns.Count; i++)
@@ -50,7 +53,7 @@ namespace BusinessLayer.Common
                     if (!Convert.IsDBNull(dr[i]))
                     {
                         string value = dr[i].ToString();
-                        if (value.Contains(','))
+                        if (value.Contains(separator))
                         {
                             value = String.Format("\"{0}\"", value);
                             sw.Write(value);
@@ -62,7 +65,7 @@ namespace BusinessLayer.Common
                     }
                     if (i < dtDataTable.Columns.Count - 1)
                     {
-                        sw.Write(delimiter);
+                        sw.Write(separator.ToString());
                     }
                 }
                 sw.Write(sw.NewLine);

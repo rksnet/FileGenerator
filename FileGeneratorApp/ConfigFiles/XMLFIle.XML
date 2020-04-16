@@ -1,39 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <FileGenerator>
-  <CommonDetails>
-    <Separater>:</Separater>
-    <FileName>XYZ{mmDDyyyy}</FileName>
-    <GenrateHeader>True</GenrateHeader>
-  </CommonDetails>
-  <HeaderDetails />
-  <Columns>
-    <Column>
-      <Name>ID</Name>
-      <Datatype>Int</Datatype>
-      <NegativeValue>0</NegativeValue>
-    </Column>
-    <Column>
-      <Name>FirstName</Name>
-      <Datatype>String</Datatype>
-      <Length>100</Length>
-      <NegativeValue>0</NegativeValue>
-    </Column>
-    <Column>
-      <Name>LastName</Name>
-      <Datatype>String</Datatype>
-      <MinLength>50</MinLength>
-      <MaxLength>100</MaxLength>
-      <Prifix>AND</Prifix>
-      <Suffix>XYZ</Suffix>
-      <NegativeValue>10</NegativeValue>
-    </Column>
-    <Column>
-      <Name>Age</Name>
-      <Datatype>Int</Datatype>
-      <NegativeValue>0</NegativeValue>
-    </Column>
-    </Columns>
-  <FooterDetails>
-    <RecordCount Value="100" />
-  </FooterDetails>
+   <CommonDetails>
+      <Separater>:</Separater>
+      <FileName>XYZ{mmDDyyyy}</FileName>
+      <GenrateHeader>True</GenrateHeader>
+   </CommonDetails>
+   <HeaderDetails />
+   <Columns>
+      <Column>
+         <Name>ID</Name>
+         <Datatype>Integdsfsdfer</Datatype>
+         <NegativeValue>0</NegativeValue>
+      </Column>
+      <Column>
+         <Name>FirstName</Name>
+         <Datatype>String</Datatype>
+         <Length>10</Length>
+         <NegativeValue>5</NegativeValue>
+      </Column>
+      <Column>
+         <Name>LastName</Name>
+         <Datatype>String</Datatype>
+         <Length>100</Length>
+         <NegativeValue>0</NegativeValue>
+      </Column>
+      <Column>
+         <Name>Age</Name>
+         <Datatype>int</Datatype>
+         <NegativeValue>0</NegativeValue>
+      </Column>
+	    <Column>
+         <Name>ABC</Name>
+         <Datatype>Int</Datatype>
+         <NegativeValue>0</NegativeValue>
+      </Column>
+	   <Column>
+         <Name>xyz</Name>
+         <Datatype>Int</Datatype>
+         <NegativeValue>0</NegativeValue>
+      </Column>
+   </Columns>
+   <FooterDetails>
+      <RecordCount Value="10" />
+   </FooterDetails>
 </FileGenerator>

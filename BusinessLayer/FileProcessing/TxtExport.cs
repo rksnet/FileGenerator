@@ -12,7 +12,7 @@ namespace BusinessLayer.FileProcessing
     {
         public void CreateFile(DataTable data, string fileName, char delimiter = ',', bool generateHeader = true)
         {
-            data.ToCSVOrTextFile(fileName, delimiter, generateHeader);
+            data.FlatFileGenerator(fileName, delimiter);
         }
     }
 }

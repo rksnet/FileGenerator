@@ -73,7 +73,8 @@ namespace FileGeneratorApp
             XmlDocument doc = new XmlDocument();
             doc.Load(txtFilePath.Text);
             string xmlcontents = doc.InnerXml;
-            Mapper.GetFileStructure(xmlcontents);
+            Mapper mapper = new Mapper();
+            mapper.GetFileStructure(xmlcontents);
             BindDataAndProcess();
         }
 

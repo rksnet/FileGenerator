@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Xml.Serialization;
-using static BusinessLayer.XMLMapping.ColumnXmlDefination;
+﻿using System.Xml.Serialization;
 
 namespace BusinessLayer.XMLMapping
 {
     /// <summary>
     /// This class has nodes other than columns to serialise the xml file 
     /// </summary>
-  public  class ConcreteXmlClass
-    {
+
         [XmlRoot(ElementName = "CommonDetails")]
         public class CommonDetails
         {
@@ -43,10 +39,10 @@ namespace BusinessLayer.XMLMapping
             [XmlElement(ElementName = "HeaderDetails")]
             public string HeaderDetails { get; set; }
             [XmlElement(ElementName = "Columns")]
-            public Columns Columns { get; set; }
+            public ColumnXmlDefination.Columns Columns { get; set; }
             [XmlElement(ElementName = "FooterDetails")]
             public FooterDetails FooterDetails { get; set; }
            
         }
-    }
+   
 }

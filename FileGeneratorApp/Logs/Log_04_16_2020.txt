@@ -1,0 +1,23 @@
+=========16 Apr 2020 09:36:51============
+
+This row already belongs to this table.
+
+System.ArgumentException: This row already belongs to this table.
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at BusinessLayer.DataProcessing.RandomDataGenerator.ListToDatatable(List`1 data) in C:\Users\rohit\source\repos\FileGenerator3\BusinessLayer\DataProcessing\RandomDataGenerator.cs:line 299
+   at BusinessLayer.DataProcessing.RandomDataGenerator.GetRandamData(Columns columnList) in C:\Users\rohit\source\repos\FileGenerator3\BusinessLayer\DataProcessing\RandomDataGenerator.cs:line 34
+   at BusinessLayer.DataProcessing.Mapper.GetFileStructure(String xml) in C:\Users\rohit\source\repos\FileGenerator3\BusinessLayer\DataProcessing\Mapper.cs:line 17
+   at FileGeneratorApp.frmInputDetails.btnPreview_Click(Object sender, EventArgs e) in C:\Users\rohit\source\repos\FileGenerator3\FileGeneratorApp\frmInputDetails.cs:line 77
+   at System.Windows.Forms.Control.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnClick(EventArgs e)
+   at System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   at System.Windows.Forms.Button.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+=================================

@@ -25,7 +25,7 @@ namespace BusinessLayer.XMLMapping
         public class RecordCount
         {
             [XmlAttribute(AttributeName = "Value")]
-            public string Value { get; set; }
+            public int Value { get; set; }
         }
 
         [XmlRoot(ElementName = "FooterDetails")]

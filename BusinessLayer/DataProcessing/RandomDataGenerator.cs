@@ -11,7 +11,7 @@ namespace BusinessLayer.DataProcessing
     public class RandomDataGenerator
     {
         #region Variables            
-        public readonly int totalRecordCount = 0;
+        private readonly int totalRecordCount = 0;
         #endregion
 
         #region Constructor              
@@ -23,8 +23,12 @@ namespace BusinessLayer.DataProcessing
         #endregion
 
         #region Get random data by passing column details
-
-        private DataTable GetRandamData(ColumnXmlDefination.Columns columnList)
+        /// <summary>
+        /// Genrates hr random data and write it datatable 
+        /// </summary>
+        /// <param name="columnList"></param>
+        /// <returns></returns>
+        public DataTable GetRandamData(ColumnXmlDefination.Columns columnList)
         {
             List<Tuple<List<Object>, string, Type>> Data = new List<Tuple<List<Object>, string, Type>>();
             foreach (var column in columnList.Column)
@@ -34,29 +38,34 @@ namespace BusinessLayer.DataProcessing
             return ListToDatatable(Data);
         }
 
+        /// <summary>
+        /// Creates based on column's datatype
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
         private Tuple<List<Object>, string, Type> GenerateRandamData(ColumnXmlDefination.Column column)
         {
             Tuple<List<Object>, string, Type> RandomData = Tuple.Create(new List<object>(), string.Empty, typeof(int));
             try
             {
-                switch (column.Datatype.ToLower())
+                if (DataTypeHandler.lstStringType.Contains(column.Datatype.ToLower()))
                 {
-                    case "string":
-                        RandomData = Tuple.Create(RandomString(column).Cast<object>().ToList(), column.Name, typeof(string));
-                        break;
-                    case "int":
-                        RandomData = Tuple.Create(RandomInteger(column).Cast<object>().ToList(), column.Name, typeof(int));
-                        break;
-                    case "decimal":
-                        RandomData = Tuple.Create(RandomDouble(column).Cast<object>().ToList(), column.Name, typeof(decimal));
-                        break;
-                    case "double":
-                        RandomData = Tuple.Create(RandomDouble(column).Cast<object>().ToList(), column.Name, typeof(double));
-                        break;
-                    case "date":
-                        RandomData = Tuple.Create(RandomDate(column).Cast<object>().ToList(), column.Name, typeof(DateTime));
-                        break;
+                    RandomData = Tuple.Create(RandomStringList(column).Cast<object>().ToList(), column.Name, typeof(string));
                 }
+                else if (DataTypeHandler.lstIntType.Contains(column.Datatype.ToLower()))
+                {
+                    RandomData = Tuple.Create(RandomInteger(column).Cast<object>().ToList(), column.Name, typeof(int));
+                }
+                else if (DataTypeHandler.lstDecimalType.Contains(column.Datatype.ToLower()))
+                {
+                    RandomData = Tuple.Create(RandomDouble(column).Cast<object>().ToList(), column.Name, typeof(decimal));
+                }
+                else if (DataTypeHandler.lstDateType.Contains(column.Datatype.ToLower()))
+                {
+                    RandomData = Tuple.Create(RandomDate(column).Cast<object>().ToList(), column.Name, typeof(DateTime));
+                }
+                else
+                { RandomData = Tuple.Create(DataTypeMismatchList(column).Cast<object>().ToList(), column.Name, typeof(string)); }
 
             }
             catch (Exception)
@@ -70,6 +79,39 @@ namespace BusinessLayer.DataProcessing
 
         #region Random data generator methods             
 
+        /// <summary>
+        /// Generates random string also verifies the column attribute .
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        private List<string> RandomStringList(ColumnXmlDefination.Column column)
+        {
+            Random random = new Random();
+            List<string> lstString = new List<string>();
+            int negativeRecordCnt = 0;
+            int maxlength = column.Length != 0 ? Convert.ToInt32(column.Length) : 100;
+            int.TryParse(Convert.ToString(column.NegativeValue), out negativeRecordCnt);
+            int recordCount = totalRecordCount - negativeRecordCnt <= 0 ? totalRecordCount : totalRecordCount - negativeRecordCnt;
+            try
+            {
+                // generate the maximum length of string
+                for (int i = 0; i < recordCount; i++)
+                {
+                    lstString.Add(RandomString(maxlength));
+                }
+                // generate the string which is greater than the maximum length for specified no of negative record in xml
+                for (int i = 0; i < negativeRecordCnt; i++)
+                {
+                    lstString.Add(RandomString(maxlength + 10));
+                }
+            }
+            catch (Exception)
+            {
+                //log error
+            }
+            return lstString;
+
+        }
         private List<int> RandomInteger(ColumnXmlDefination.Column column)
         {
             Random random = new Random();
@@ -82,13 +124,13 @@ namespace BusinessLayer.DataProcessing
                 // generate the possitive data 
                 for (int i = 0; i < recordCount; i++)
                 {
-                    int ranInt = random.Next();
+                    int ranInt = random.Next(column.MinLength, column.MaxLength == 0 ? 1000 : column.MaxLength);
                     lstInt.Add(ranInt);
                 }
                 // generate the negative data for specified no of negative record in xml
                 for (int i = 0; i < negativeRecordCnt; i++)
                 {
-                    int ranInt = random.Next() * -1;
+                    int ranInt = random.Next(column.MinLength == 0 ? -10 : column.MinLength - 10, column.MaxLength == 0 ? 1000 + 100 : column.MaxLength + 100) * -1;
                     lstInt.Add(ranInt);
                 }
 
@@ -130,50 +172,11 @@ namespace BusinessLayer.DataProcessing
             return lstDouble;
 
         }
-
-        private List<string> RandomString(ColumnXmlDefination.Column column)
-        {
-            Random random = new Random();
-            List<string> lstString = new List<string>();
-            int negativeRecordCnt = 0;
-            int maxlength = column.Length != 0 ? Convert.ToInt32(column.Length) : 100;
-            int.TryParse(Convert.ToString(column.NegativeValue), out negativeRecordCnt);
-            int recordCount = totalRecordCount - negativeRecordCnt <= 0 ? totalRecordCount : totalRecordCount - negativeRecordCnt;
-            try
-            {
-                // generate the maximum length of string
-                for (int i = 0; i < recordCount; i++)
-                {
-                    StringBuilder builder = new StringBuilder();
-                    char ch;
-                    for (int j = 0; j < maxlength; j++)
-                    {
-                        ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
-                        builder.Append(ch);
-                    }
-                    lstString.Add(builder.ToString());
-                }
-                // generate the string which is greater than the maximum length for specified no of negative record in xml
-                for (int i = 0; i < negativeRecordCnt; i++)
-                {
-                    StringBuilder builder = new StringBuilder();
-                    char ch;
-                    for (int j = 0; j < maxlength + 10; j++)// 10 defined to increase  the maximum string length
-                    {
-                        ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
-                        builder.Append(ch);
-                    }
-                    lstString.Add(builder.ToString());
-                }
-
-            }
-            catch (Exception)
-            {
-                //log error
-            }
-            return lstString;
-
-        }
+        /// <summary>
+        /// Generates randon string based on column defination and attributes
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
 
         private List<DateTime> RandomDate(ColumnXmlDefination.Column column)
         {
@@ -181,7 +184,7 @@ namespace BusinessLayer.DataProcessing
             List<DateTime> lstDate = new List<DateTime>();
 
             DateTime startDate = column.StartDate != DateTime.MinValue || column.StartDate != null ? Convert.ToDateTime(column.StartDate) : DateTime.Today;
-            DateTime maxDate = column.EndDate != DateTime.MinValue || column.EndDate != null  ? Convert.ToDateTime(column.EndDate) : startDate.AddYears(40);
+            DateTime maxDate = column.EndDate != DateTime.MinValue || column.EndDate != null ? Convert.ToDateTime(column.EndDate) : startDate.AddYears(40);
             int negativeRecordCnt = 0;
             int.TryParse(Convert.ToString(column.NegativeValue), out negativeRecordCnt);
             int recordCount = totalRecordCount - negativeRecordCnt <= 0 ? totalRecordCount : totalRecordCount - negativeRecordCnt;
@@ -226,15 +229,7 @@ namespace BusinessLayer.DataProcessing
             return lstDate;
 
         }
-
-        private int RandomIneger(int min, int max)
-        {
-
-            Random random = new Random();
-            return random.Next(min, max);
-        }
-
-        private string RandomString(int size, bool lowerCase)
+        private string RandomString(int size, bool lowerCase = false)
         {
             StringBuilder builder = new StringBuilder();
             Random random = new Random();
@@ -248,7 +243,6 @@ namespace BusinessLayer.DataProcessing
                 return builder.ToString().ToLower();
             return builder.ToString();
         }
-
         public static IEnumerable<int> GetRandomNumbers(int size)
         {
             var data = new byte[4];
@@ -263,22 +257,32 @@ namespace BusinessLayer.DataProcessing
                 }
             }
         }
-        private string FirstName()
+        /// <summary>
+        /// This method will execute in case datatype defination not found in the application 
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        private List<string> DataTypeMismatchList(ColumnXmlDefination.Column column)
         {
-            Random rnd = new Random();
-            string[] firtsName = { "Rufus", "Bear", "Dakota", "Fido",
-                          "Vanya", "Samuel", "Koani", "Volodya",
-                          "Prince", "Yiska" };
+            List<string> lstString = new List<string>();
+            try
+            {
+                for (int i = 0; i < totalRecordCount; i++)
+                {
+                    lstString.Add("Data type mismatch");
+                }
+            }
+            catch (Exception)
+            {
+                //log error
+            }
+            return lstString;
 
-            int index = rnd.Next(firtsName.Length);
-            return firtsName[index];
         }
-
 
         #endregion
 
         #region Data Processing
-
         public static DataTable ListToDatatable(List<Tuple<List<Object>, string, Type>> data)
         {
             DataTable dt = new DataTable();
@@ -303,8 +307,9 @@ namespace BusinessLayer.DataProcessing
             return dt;
 
 
-            #endregion
+
 
         }
+        #endregion
     }
 }

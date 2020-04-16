@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using BusinessLayer;
+using BusinessLayer.DataProcessing;
 using Common;
 
 namespace FileGeneratorApp
@@ -68,7 +70,10 @@ namespace FileGeneratorApp
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            
+            XmlDocument doc = new XmlDocument();
+            doc.Load(txtFilePath.Text);
+            string xmlcontents = doc.InnerXml;
+            Mapper.GetFileStructure(xmlcontents);
             BindDataAndProcess();
         }
 

@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Utility.cs" />
+    <Compile Include="DataProcessing\DataTypeHandler.cs" />
+    <Compile Include="DataProcessing\Mapper.cs" />
     <Compile Include="DataProcessing\RandomDataGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLMapping\ConcreteXmlClass.cs" />

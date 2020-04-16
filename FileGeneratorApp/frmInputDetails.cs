@@ -70,11 +70,6 @@ namespace FileGeneratorApp
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(txtFilePath.Text);
-            string xmlcontents = doc.InnerXml;
-            Mapper mapper = new Mapper();
-            mapper.GetFileStructure(xmlcontents);
             BindDataAndProcess();
         }
 

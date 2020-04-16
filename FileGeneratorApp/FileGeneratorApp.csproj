@@ -55,10 +55,19 @@
     <Compile Include="frmInputDetails.Designer.cs">
       <DependentUpon>frmInputDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTestFileGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTestFileGenerator.Designer.cs">
+      <DependentUpon>FrmTestFileGenerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmInputDetails.resx">
       <DependentUpon>frmInputDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTestFileGenerator.resx">
+      <DependentUpon>FrmTestFileGenerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

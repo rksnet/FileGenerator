@@ -38,7 +38,7 @@ namespace FileGeneratorApp
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmInputDetails());
+            Application.Run(new FrmTestFileGenerator());
 
             // Stop the application and all the threads in suspended state.
             Environment.Exit(-1);

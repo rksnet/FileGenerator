@@ -27,7 +27,13 @@ namespace BusinessLayer.Common
             }
             return result;
         }
-        public static void ToCSV(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv")
+        /// <summary>
+        /// this will convert datatable to flat file 
+        /// </summary>
+        /// <param name="dtDataTable"></param>
+        /// <param name="strFilePath"></param>
+        /// <param name="separator"></param>
+        public static void FlatFileGenerator(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv",char separator=',')
         {
             StreamWriter sw = new StreamWriter(strFilePath, false);
             //headers  
@@ -36,7 +42,7 @@ namespace BusinessLayer.Common
                 sw.Write(dtDataTable.Columns[i]);
                 if (i < dtDataTable.Columns.Count - 1)
                 {
-                    sw.Write(",");
+                    sw.Write(separator.ToString());
                 }
             }
             sw.Write(sw.NewLine);
@@ -47,7 +53,7 @@ namespace BusinessLayer.Common
                     if (!Convert.IsDBNull(dr[i]))
                     {
                         string value = dr[i].ToString();
-                        if (value.Contains(','))
+                        if (value.Contains(separator))
                         {
                             value = String.Format("\"{0}\"", value);
                             sw.Write(value);
@@ -59,7 +65,7 @@ namespace BusinessLayer.Common
                     }
                     if (i < dtDataTable.Columns.Count - 1)
                     {
-                        sw.Write(",");
+                        sw.Write(separator.ToString());
                     }
                 }
                 sw.Write(sw.NewLine);

@@ -27,19 +27,22 @@ namespace BusinessLayer.Common
             }
             return result;
         }
-        public static void ToCSV(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv")
+        public static void ToCSVOrTextFile(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv", char delimiter = ',', bool generateHeader = true)
         {
             StreamWriter sw = new StreamWriter(strFilePath, false);
-            //headers  
-            for (int i = 0; i < dtDataTable.Columns.Count; i++)
+            if (generateHeader)
             {
-                sw.Write(dtDataTable.Columns[i]);
-                if (i < dtDataTable.Columns.Count - 1)
+                //headers  
+                for (int i = 0; i < dtDataTable.Columns.Count; i++)
                 {
-                    sw.Write(",");
+                    sw.Write(dtDataTable.Columns[i]);
+                    if (i < dtDataTable.Columns.Count - 1)
+                    {
+                        sw.Write(delimiter);
+                    }
                 }
+                sw.Write(sw.NewLine);
             }
-            sw.Write(sw.NewLine);
             foreach (DataRow dr in dtDataTable.Rows)
             {
                 for (int i = 0; i < dtDataTable.Columns.Count; i++)
@@ -59,7 +62,7 @@ namespace BusinessLayer.Common
                     }
                     if (i < dtDataTable.Columns.Count - 1)
                     {
-                        sw.Write(",");
+                        sw.Write(delimiter);
                     }
                 }
                 sw.Write(sw.NewLine);

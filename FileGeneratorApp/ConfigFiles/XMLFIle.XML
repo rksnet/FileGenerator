@@ -9,7 +9,7 @@
    <Columns>
       <Column>
          <Name>ID</Name>
-         <Datatype>Integer</Datatype>
+         <Datatype>Integdsfsdfer</Datatype>
          <NegativeValue>0</NegativeValue>
       </Column>
       <Column>
@@ -21,7 +21,7 @@
       <Column>
          <Name>LastName</Name>
          <Datatype>String</Datatype>
-         <Length>10</Length>
+         <Length>100</Length>
          <NegativeValue>0</NegativeValue>
       </Column>
       <Column>
@@ -29,12 +29,12 @@
          <Datatype>int</Datatype>
          <NegativeValue>0</NegativeValue>
       </Column>
-        <Column>
+	    <Column>
          <Name>ABC</Name>
          <Datatype>Int</Datatype>
          <NegativeValue>0</NegativeValue>
       </Column>
-       <Column>
+	   <Column>
          <Name>xyz</Name>
          <Datatype>Int</Datatype>
          <NegativeValue>0</NegativeValue>

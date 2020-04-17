@@ -64,8 +64,8 @@ namespace FileGeneratorApp
             // Do logging of exception details
             Logger.WriteException(Ex);
 
-            var message =String.Format("Sorry, Something went wrong.\r\n" + "{0}\r\n" + "{1}\r\n" + "Please contact support.","","");
-            MessageBox.Show(message, @"Unexpected Error",MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
+            var message = Ex.Message;// String.Format("Sorry, Something went wrong.\r\n" + "{0}\r\n" + "{1}\r\n" + "Please contact support.","","");
+            MessageBox.Show(message, @"Error",MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
 
         }
 

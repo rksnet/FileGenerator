@@ -338,3 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/FileGeneratorApp/Logs/Log_04_17_2020.txt

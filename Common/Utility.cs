@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-
-namespace BusinessLayer.Common
+namespace Common
 {
     public static class Utility
     {
@@ -33,7 +35,7 @@ namespace BusinessLayer.Common
         /// <param name="dtDataTable"></param>
         /// <param name="strFilePath"></param>
         /// <param name="separator"></param>
-        public static void FlatFileGenerator(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv",char separator=',')
+        public static void FlatFileGenerator(this DataTable dtDataTable, string strFilePath = @"C:\Users\rohit\source\repos\rksnet\FileGenerator\FileGeneratorApp\test.csv", char separator = ',')
         {
             StreamWriter sw = new StreamWriter(strFilePath, false);
             //headers  

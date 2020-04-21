@@ -95,17 +95,15 @@ namespace ApplicationUnitTest
             RandomDataGenerator objRandomDataGenerator = new RandomDataGenerator(objFileGenerator.FooterDetails.RecordCount.Value);
             var dataTable = objRandomDataGenerator.GetRandamData(objFileGenerator.Columns);
             int negativeCount = 0;
-
+            DateTime dt;
             Assert.AreEqual(dataTable.Rows.Count, objFileGenerator.FooterDetails.RecordCount.Value);
             foreach (DataRow row in dataTable.Rows)
             {
-
-                if (row[0].ToString().Length == (objFileGenerator.Columns.Column[0].Length + 10))
+                Assert.IsTrue(DateTime.TryParse(row[0].ToString(), out dt));
+                if (row[0].ToString().Length == objFileGenerator.Columns.Column[0].Length)
                 {
                     negativeCount++;
                 }
-                else
-                    Assert.AreEqual(row[0].ToString().Length, objFileGenerator.Columns.Column[0].Length);
             }
             Assert.AreEqual(negativeCount, objFileGenerator.Columns.Column[0].NegativeValue);
         }

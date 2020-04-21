@@ -339,3 +339,9 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /FileGeneratorApp/Logs/Log_04_17_2020.txt
+/ApplicationUnitTest/TestRandomMethods.cs
+/FileGeneratorApp/ConfigFiles/XMLFIleString.XML
+/FileGeneratorApp/ConfigFiles/XMLFIleInt.XML
+/FileGeneratorApp/ConfigFiles/XMLFIleDouble.XML
+/FileGeneratorApp/Logs/Log_04_21_2020.txt
+/FileGeneratorApp/Logs/Log_04_20_2020.txt

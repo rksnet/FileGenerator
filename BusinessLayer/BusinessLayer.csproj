@@ -64,12 +64,15 @@
     <Compile Include="DataProcessing\JsonData.cs" />
     <Compile Include="DataProcessing\Mapper.cs" />
     <Compile Include="DataProcessing\RandomDataGenerator.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLMapping\ConcreteXmlClass.cs" />
     <Compile Include="XMLMapping\ColumnXmlDefination.cs" />
     <Compile Include="XmlProcessing.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="JsonFiles\en.Formula.json" />
+    <None Include="JsonFiles\en.locale1.json" />
     <None Include="JsonFiles\en.locale.json" />
     <None Include="packages.config" />
   </ItemGroup>

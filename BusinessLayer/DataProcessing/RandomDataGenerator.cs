@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.XMLMapping;
+using Common;
 
 namespace BusinessLayer.DataProcessing
 {
     public class RandomDataGenerator
     {
+        JsonData jsonData = new JsonData();
         #region Variables            
         private readonly int totalRecordCount = 0;
         #endregion
@@ -94,10 +96,14 @@ namespace BusinessLayer.DataProcessing
             int recordCount = totalRecordCount - negativeRecordCnt <= 0 ? totalRecordCount : totalRecordCount - negativeRecordCnt;
             try
             {
+
+                List<string> data = jsonData.GetData(column.Name);
                 // generate the maximum length of string
                 for (int i = 0; i < recordCount; i++)
                 {
-                    lstString.Add(RandomString(maxlength));
+                    if (data != null)
+                    { lstString.Add(data.RandomElement()); }
+                    else { lstString.Add(RandomString(maxlength)); }
                 }
                 // generate the string which is greater than the maximum length for specified no of negative record in xml
                 for (int i = 0; i < negativeRecordCnt; i++)
@@ -110,7 +116,6 @@ namespace BusinessLayer.DataProcessing
                 //log error
             }
             return lstString;
-
         }
         private List<int> RandomInteger(ColumnXmlDefination.Column column)
         {

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProcessing\DataTypeHandler.cs" />
+    <Compile Include="DataProcessing\GetFilePath.cs" />
     <Compile Include="DataProcessing\JsonData.cs" />
     <Compile Include="DataProcessing\Mapper.cs" />
     <Compile Include="DataProcessing\RandomDataGenerator.cs" />
@@ -81,6 +82,9 @@
       <Project>{64618569-7051-41fd-b7ca-85a3e25b3093}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JsonFiles\XMLFIle.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

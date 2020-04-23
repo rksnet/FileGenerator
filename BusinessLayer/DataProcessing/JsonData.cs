@@ -15,8 +15,7 @@ namespace BusinessLayer.DataProcessing
 {
     public class JsonData
     {
-        private const string FILE_NAME = @"BusinessLayer\JsonFiles\en.locale1.json";
-        private const string fileNameFormula = @"BusinessLayer\JsonFiles\en.Formula.json";
+     
         public List<string> DataList { get; set; }
         public List<string> Firstname { get; set; }
         public List<string> LastNames { get; set; }
@@ -31,7 +30,7 @@ namespace BusinessLayer.DataProcessing
         /// <param name="filePath"></param>
         public List<string> GetData(string columnName)
         {
-            string filePath = GetJsonFilePath();
+            string filePath =GetFilePath.GetJsonFilePath();
             JObject FileDataObj = JObject.Parse(File.ReadAllText(filePath));
             List<string> Nodes = new List<string>();
             ///creating a list of parent node f
@@ -42,7 +41,7 @@ namespace BusinessLayer.DataProcessing
                                        select val).ToList();
 
             ///parsing the json file which has fields defination mapping 
-            JObject formulaJson = JObject.Parse(File.ReadAllText(GetJsonFilePathFormula()));
+            JObject formulaJson = JObject.Parse(File.ReadAllText(GetFilePath.GetJsonFilePathFormula()));
 
             string formulaNodeName = string.Empty;
             ///find value if column matches any value defnied in formula json
@@ -106,13 +105,6 @@ namespace BusinessLayer.DataProcessing
             return Nodes;
         }
 
-        private string GetJsonFilePath()
-        {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Substring(0, AppDomain.CurrentDomain.BaseDirectory.LastIndexOf("FileGenerator")), FILE_NAME);
-        }
-        private string GetJsonFilePathFormula()
-        {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Substring(0, AppDomain.CurrentDomain.BaseDirectory.LastIndexOf("FileGenerator")), fileNameFormula);
-        }
+      
     }
 }

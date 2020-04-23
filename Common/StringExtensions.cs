@@ -11,6 +11,7 @@ namespace Common
     /// Extension method's
     /// </summary>
     public static class StringExtensions
+
     {
         public static bool Like(this string toSearch, string toFind)
         {

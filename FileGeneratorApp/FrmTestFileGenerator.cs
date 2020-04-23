@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,22 +15,23 @@ namespace FileGeneratorApp
 {
     public partial class FrmTestFileGenerator : Form
     {
+        XmlDocument docXmlDocument = new XmlDocument();
         public FrmTestFileGenerator()
         {
             InitializeComponent();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnTestFile_Click(object sender, EventArgs e)
         {
             DialogResult result = saveFileDialog.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(txtFilePath.Text);
+
+                docXmlDocument.Load(txtFilePath.Text);
                 Mapper mapper = new Mapper();
-                mapper.GetTestFile(doc.InnerXml, saveFileDialog.FileName);
+                mapper.GetTestFile(docXmlDocument.InnerXml, saveFileDialog.FileName);
 
             }
+            MessageBox.Show("Test file sucessfully generated at " + saveFileDialog.FileName);
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -43,16 +45,21 @@ namespace FileGeneratorApp
                     txtFilePath.Text = file;
 
                 }
-                catch 
+                catch
                 {
 
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDownloadXMl_Click(object sender, EventArgs e)
         {
-
+            string downLoadPath = Application.StartupPath + "/XMlConfiguarationFile.XML";
+            docXmlDocument = new XmlDocument();
+            docXmlDocument.Load(GetFilePath.GetXmlConfigFile());
+            // save the document to a file and auto-indent the output.
+            docXmlDocument.Save(downLoadPath);
+            MessageBox.Show("XMl file downloaded at -" + downLoadPath);
         }
     }
 }

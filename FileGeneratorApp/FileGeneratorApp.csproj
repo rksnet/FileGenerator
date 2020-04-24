@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmEmpBillingVariance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEmpBillingVariance.Designer.cs">
+      <DependentUpon>FrmEmpBillingVariance.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInputDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmEmpBillingVariance.resx">
+      <DependentUpon>FrmEmpBillingVariance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInputDetails.resx">
       <DependentUpon>frmInputDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -78,6 +87,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ConfigFiles\Input1.xlsx" />
+    <None Include="ConfigFiles\Input2.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

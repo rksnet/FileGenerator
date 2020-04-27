@@ -40,7 +40,7 @@ namespace FileGeneratorApp
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmTestFileGenerator());
+            Application.Run(new MDIParent1());
 
             // Stop the application and all the threads in suspended state.
             Environment.Exit(-1);

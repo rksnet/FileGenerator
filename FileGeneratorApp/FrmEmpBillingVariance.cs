@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer.DataProcessing;
+using System.IO;
 
 namespace FileGeneratorApp
 {
@@ -21,6 +22,19 @@ namespace FileGeneratorApp
         private void button1_Click(object sender, EventArgs e)
         {
 
+            string sourceInputFile1 = Application.StartupPath.Replace("\\bin\\Debug", "") + "\\ConfigFiles\\Input1.xlsx";
+            string sourceInputFile2 = Application.StartupPath.Replace("\\bin\\Debug", "") + "\\ConfigFiles\\Input1.xlsx";
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                string destPath = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrEmpty(destPath))
+                {
+                    File.Copy(sourceInputFile1, destPath + "\\Input.xlsx", true);
+                    File.Copy(sourceInputFile2, destPath + "\\Input2.xlsx", true);
+                }
+                MessageBox.Show("File saved on the given location.", "Information", MessageBoxButtons.OK);
+            }
         }
 
         private void btnOpenFile1_Click(object sender, EventArgs e)
